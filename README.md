@@ -1,5 +1,7 @@
 # Gusfield Z-algorithm
 
+![Z alg vs Naive](https://github.com/adrian-kong/z-alg/actions/workflows/ci_test.yml/badge.svg)
+
 FIT3155 week 1
 
 Basically just caching string comparisons, identifying the index such that it can refer from previous computations.
