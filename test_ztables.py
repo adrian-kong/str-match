@@ -1,5 +1,5 @@
 import pytest
-from z_alg import z_alg
+from gusfield import z_alg
 from naive import naive
 import random
 
@@ -8,7 +8,7 @@ POSSIBLE_CHARS = ['a', 'b', 'c']
 
 
 @pytest.mark.parametrize('execution_number', range(1_000))
-def test_z_alg_vs_naive(execution_number):
+def test_randomized_strings(execution_number):
     """
     Naive quadratic algorithm vs linear Z algorithm
     :return: Assertion test for correctness and comparisons
@@ -18,8 +18,8 @@ def test_z_alg_vs_naive(execution_number):
     text = "".join([random.choice(POSSIBLE_CHARS) for _ in range(STRING_SIZE)])
 
     # Compute
-    naive_z, naive_comps = naive(text)
-    gusfield_z, gusfield_comps = z_alg(text)
+    naive_z = naive(text)
+    gusfield_z = z_alg(text)
     print(f"naive = {naive_z}, z_alg = {gusfield_z}")
     assert gusfield_z == naive_z
     assert naive_z >= gusfield_z
