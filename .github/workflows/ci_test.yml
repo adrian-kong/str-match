@@ -1,4 +1,4 @@
-name: Test z algorithm vs naive
+name: Randomized string test
 
 on:
   push:
