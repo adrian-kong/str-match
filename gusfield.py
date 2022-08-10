@@ -7,7 +7,7 @@ def z_alg(text: str) -> []:
     for i in range(1, length + 1):
         if i >= r_tmp:
             # simple iter O(n^2) basically, would function without the l_tmp, r_tmp caching
-            for j in range(0, length - i + 1):
+            for j in range(length - i + 1):
                 if text[i + j] != text[j]:
                     break
                 z_arr[i - 1] += 1
@@ -18,7 +18,7 @@ def z_alg(text: str) -> []:
             if i + rel_z >= r_tmp:
                 excess = length - r_tmp + 1
                 z_arr[i - 1] = r_tmp - i
-                for j in range(0, excess):
+                for j in range(excess):
                     if r_tmp + j > length or text[r_tmp + j] != text[r_tmp - i + j]:
                         break
                     z_arr[i - 1] += 1
