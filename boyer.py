@@ -11,7 +11,7 @@ def boyer_moore(txt: str, pat: str):
     for i in range(len(pat) - 1, -1, -1):
         if not R.get(pat[i]):
             R[pat[i]] = i
-        # pattern match offset, construct z table
+        # pattern match offset, construct z table, skip the end since we know it will always be the full string
         if i != len(pat) - 1:
             if i < l_tmp:
                 for j in range(i + 1):
@@ -31,9 +31,12 @@ def boyer_moore(txt: str, pat: str):
                 else:
                     z_arr[i] = rel_z
 
-            if good_suffix[len(pat) - z_arr[i]] < i:
-                good_suffix[len(pat) - z_arr[i]] = i
+            good_suffix[len(pat) - z_arr[i]] = max(good_suffix[len(pat) - z_arr[i]], i)
 
+    print(good_suffix)
+    # end preprocessing
+
+    # start matching
     i = 0
     while i < (len(txt) - len(pat) + 1):
         for j in range(len(pat)):
@@ -53,3 +56,6 @@ def boyer_moore(txt: str, pat: str):
         else:
             print(f"found pattern at {i}:{''.join([txt[i + k] for k in range(len(pat))])}")
             return i
+
+
+boyer_moore("abcEabcFabc", "abcFabc")
